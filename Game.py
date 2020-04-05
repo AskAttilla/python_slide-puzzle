@@ -1,7 +1,22 @@
+import pygame
+from pygame import event
+from pygame.locals import (
+    K_UP,
+    K_DOWN,
+    K_LEFT,
+    K_RIGHT,
+    K_ESCAPE,
+    KEYDOWN,
+    QUIT,
+)
+
 from Tile import Tile
 
 
+
 class Game:
+   
+
     def __init__(self):
         self.moves = 0
         self._gameArray = []
@@ -90,3 +105,27 @@ class Game:
             for k in range(len(self._gameArray[r])):
                 if (self._gameArray[r][k] == tile):
                     return [r, k]
+    
+    pygame.init()
+
+    screen = pygame.display.set_mode([500, 500])
+    
+    running = True
+    while running:
+
+        # Did the user click the window close button?
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+        # Fill the background with white
+        screen.fill((255, 255, 255))
+
+        # Draw a solid blue circle in the center
+        pygame.draw.circle(screen, (0, 0, 255), (250, 250), 75)
+
+        # Flip the display
+        pygame.display.flip()
+
+    # Done! Time to quit.
+    pygame.quit()
